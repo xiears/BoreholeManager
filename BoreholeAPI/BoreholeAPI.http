@@ -1,0 +1,6 @@
+@BoreholeAPI_HostAddress = http://localhost:5267
+
+GET {{BoreholeAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

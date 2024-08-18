@@ -6,3 +6,5 @@ Security
 Role based authorisation
 Translations
 Improved error handling
+Pagination
+Better filtering of data

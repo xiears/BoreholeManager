@@ -18,18 +18,19 @@ namespace BoreholeAPI.Controllers
         }
 
         [HttpPost]
-        public int Add(Borehole bh)
+        public int Add([FromBody] Borehole bh)
         {
             return repository.Add(bh);
         }
 
         [HttpPost]
-        public void Update(Borehole bh)
+        public void Update([FromBody] Borehole bh)
         {
             repository.Edit(bh);
         }
 
         [HttpDelete]
+        [Route("Delete/{id}")]
         public void Delete(int id)
         {
             repository.Delete(id);

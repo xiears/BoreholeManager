@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<BoreholeViewModel>
+@{
+    ViewData["Title"] = "Borehole List";
+}
+<div id="AddBoreholeButton" class="btn btn-outline-primary">@Html.ActionLink("Add Borehole", "Add")</div>
+<div id="BoreholeData">
+    <table>
+        <thead>
+            <tr>
+                <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().Id)</td>
+                <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().X)</td>
+                <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().Y)</td>
+                <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().Depth)</td>
+                <td>Options</td>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (BoreholeViewModel vm in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(bh => vm.Id)</td>
+                <td>@Html.DisplayFor(bh => vm.X)</td>
+                <td>@Html.DisplayFor(bh => vm.Y)</td>
+                <td>@Html.DisplayFor(bh => vm.Depth)</td>
+                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="@vm.Id">Delete</button></td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<div id="deleteModal" class="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>Delete Borehole</h5>
+            </div>
+            <div class="modal-body">
+                <div id="deleteMessage">Are you sure you want to delete this borehole?</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="deleteButton" class="btn btn-primary">Delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var modal = $("#deleteModal");
+        modal.on('show.bs.modal', function (event) {
+
+            var button = event.relatedTarget;
+            var boreholeId = button.getAttribute('data-bs-id');
+
+            var modalMessage = "Are you sure you want to delete borehole with ID " + boreholeId;
+            modal.find(".modal-body #deleteMessage").text(modalMessage);
+            modal.find(".modal-footer #deleteButton").on("click", function () { location.href = "@Url.Action("Delete", "Borehole")/" + boreholeId; });
+        });
+
+        modal.on('hide.bs.modal', function (event) {
+            modal.find(".modal-footer #deleteButton").unbind('click');
+        });
+    </script>
+}

@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model BoreholeViewModel
+@{
+    ViewData["Title"] = "Add Borehole";
+}
+@using (Html.BeginForm()) {
+    <table>
+        <tr>
+            <td>@Html.DisplayNameFor(i => i.X)</td>
+            <td>@Html.TextBoxFor(i => i.X)</td>
+            <td class="errorMessage">@Html.ValidationMessageFor(i => i.X)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(i => i.Y)</td>
+            <td>@Html.TextBoxFor(i => i.Y)</td>
+            <td class="errorMessage">@Html.ValidationMessageFor(i => i.Y)</td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(i => i.Depth)</td>
+            <td>@Html.TextBoxFor(i => i.Depth)</td>
+            <td class="errorMessage">@Html.ValidationMessageFor(i => i.Depth)</td>
+        </tr>
+    </table>
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Go Back to Borehole List", "Index")
+}
+
+

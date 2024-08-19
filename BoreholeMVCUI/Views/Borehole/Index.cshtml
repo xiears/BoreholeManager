@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<BoreholeViewModel>
+@{
+    ViewData["Title"] = "Borehole List";
+}
+<div id="AddBoreholeButton">Add New</div>
+<div id="BoreholeData">
+    <table>
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>X Position</td>
+                <td>Y Position</td>
+                <td>Depth</td>
+                <td>Options</td>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (BoreholeViewModel vm in Model)
+        {
+            <tr>
+                <td>@vm.Id</td>
+                <td>@vm.X</td>
+                <td>@vm.Y</td>
+                <td>@vm.Depth</td>
+                <td>Edit Delete</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

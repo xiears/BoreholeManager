@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using BoreholeMVCUI.Models.Enums;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace BoreholeMVCUI.Models
@@ -20,5 +21,7 @@ namespace BoreholeMVCUI.Models
         [Range(0, 500)]
         [Required(ErrorMessage = "This field is required")]
         public decimal Depth { get; set; }
+
+        public BoreholeType BoreholeType { get; set; }
     }
 }

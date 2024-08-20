@@ -1,4 +1,4 @@
-﻿namespace BoreholeMVCUI.Models
+﻿namespace BoreholeMVCUI.Models.Enums
 {
     public enum BoreholeType
     {

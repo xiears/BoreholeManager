@@ -1,4 +1,5 @@
-﻿@*
+﻿@using BoreholeMVCUI.Models.Enums
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @model IEnumerable<BoreholeViewModel>
@@ -8,11 +9,13 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <div id="AddBoreholeButton" class="btn btn-outline-primary">@Html.ActionLink("Add Borehole", "Add")</div>
+            <div id="AddBoreholeButton" class="btn btn-outline-primary">@Html.ActionLink("Add Cable Borehole", "AddCable")</div>
+            <div id="AddBoreholeButton" class="btn btn-outline-primary">@Html.ActionLink("Add Drill Borehole", "AddDrill")</div>
             <div id="BoreholeData" class="">
                 <table>
                     <thead>
                         <tr>
+                            <td>Type</td>
                             <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().Id)</td>
                             <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().X)</td>
                             <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().Y)</td>
@@ -23,12 +26,24 @@
                     <tbody>
                     @foreach (BoreholeViewModel vm in Model)
                     {
-                        <tr>
+                        <tr onclick="location.href = '@Url.Action("Details", "Borehole", new { id=vm.Id })'">
+                            @if(vm.BoreholeType == BoreholeMVCUI.Models.Enums.BoreholeType.Cable)
+                            {
+                                <td><i class="fa-solid fa-bore-hole"></i></td>
+                            }
+                            else if (vm.BoreholeType == BoreholeMVCUI.Models.Enums.BoreholeType.Drill)
+                            {
+                                <td><i class="fa-solid fa-arrows-down-to-line"></i></td>
+                            }
+                            else
+                            {
+                                <td><i class="fa-solid fa-ring"></i></td>
+                            }
                             <td>@Html.DisplayFor(bh => vm.Id)</td>
                             <td>@Html.DisplayFor(bh => vm.X)</td>
                             <td>@Html.DisplayFor(bh => vm.Y)</td>
                             <td>@Html.DisplayFor(bh => vm.Depth)</td>
-                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="@vm.Id">Delete</button></td>
+                            <td onClick='event.stopPropagation();'><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="@vm.Id">Delete</button></td>
                         </tr>
                     }
                     </tbody>

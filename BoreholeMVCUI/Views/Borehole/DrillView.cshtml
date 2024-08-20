@@ -1,0 +1,31 @@
+﻿@model DrillViewModel
+@{
+    ViewData["Title"] = "Cable Borehole " + Model.Id;
+}
+<table>
+    <tr>
+        <td>@Html.DisplayNameFor(i => i.Id)</td>
+        <td>@Html.DisplayFor(i => i.Id)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(i => i.X)</td>
+        <td>@Html.DisplayFor(i => i.X)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(i => i.Y)</td>
+        <td>@Html.DisplayFor(i => i.Y)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(i => i.Depth)</td>
+        <td>@Html.DisplayFor(i => i.Depth)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(i => i.DrillType)</td>
+        <td>@Html.DisplayFor(i => i.DrillType)</td>
+    </tr>
+    <tr>
+        <td>@Html.DisplayNameFor(i => i.DrillStrength)</td>
+        <td>@Html.DisplayFor(i => i.DrillStrength)</td>
+    </tr>
+</table>
+@Html.ActionLink("Go Back to Borehole List", "Index")

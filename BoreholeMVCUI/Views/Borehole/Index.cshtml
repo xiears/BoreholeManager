@@ -5,31 +5,37 @@
 @{
     ViewData["Title"] = "Borehole List";
 }
-<div id="AddBoreholeButton" class="btn btn-outline-primary">@Html.ActionLink("Add Borehole", "Add")</div>
-<div id="BoreholeData">
-    <table>
-        <thead>
-            <tr>
-                <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().Id)</td>
-                <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().X)</td>
-                <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().Y)</td>
-                <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().Depth)</td>
-                <td>Options</td>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach (BoreholeViewModel vm in Model)
-        {
-            <tr>
-                <td>@Html.DisplayFor(bh => vm.Id)</td>
-                <td>@Html.DisplayFor(bh => vm.X)</td>
-                <td>@Html.DisplayFor(bh => vm.Y)</td>
-                <td>@Html.DisplayFor(bh => vm.Depth)</td>
-                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="@vm.Id">Delete</button></td>
-            </tr>
-        }
-        </tbody>
-    </table>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div id="AddBoreholeButton" class="btn btn-outline-primary">@Html.ActionLink("Add Borehole", "Add")</div>
+            <div id="BoreholeData" class="">
+                <table>
+                    <thead>
+                        <tr>
+                            <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().Id)</td>
+                            <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().X)</td>
+                            <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().Y)</td>
+                            <td>@Html.DisplayNameFor(bh => bh.FirstOrDefault().Depth)</td>
+                            <td>Options</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (BoreholeViewModel vm in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(bh => vm.Id)</td>
+                            <td>@Html.DisplayFor(bh => vm.X)</td>
+                            <td>@Html.DisplayFor(bh => vm.Y)</td>
+                            <td>@Html.DisplayFor(bh => vm.Depth)</td>
+                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal" data-bs-id="@vm.Id">Delete</button></td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 <div id="deleteModal" class="modal">
     <div class="modal-dialog" role="document">

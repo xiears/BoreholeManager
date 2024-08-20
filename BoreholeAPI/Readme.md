@@ -8,3 +8,5 @@ Translations
 Improved error handling
 Pagination
 Better filtering of data
+Considerations for mobile
+Handling of units

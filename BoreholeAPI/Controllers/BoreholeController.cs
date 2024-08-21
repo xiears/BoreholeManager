@@ -12,9 +12,9 @@ namespace BoreholeAPI.Controllers
     {
         BoreholeRepository repository;
 
-        public BoreholeController(BoreholeContext context) 
+        public BoreholeController(BoreholeContext context, ILogger log) 
         {
-            repository = new BoreholeRepository(context);
+            repository = new BoreholeRepository(context, log);
         }
 
         [HttpPost]

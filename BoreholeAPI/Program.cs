@@ -20,6 +20,9 @@ var connectionString = configuration.GetConnectionString("BoreholeConnectionStri
 builder.Services.AddDbContext<BoreholeContext>(opt =>
     opt.UseSqlServer(connectionString));
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

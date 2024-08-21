@@ -1,22 +1,36 @@
 ﻿using BoreholeData.Entities;
+using Microsoft.Extensions.Logging;
 
 namespace BoreholeData.Repositories
 {
     public class BoreholeRepository
     {
         private BoreholeContext context;
+        private ILogger logger;
 
-        public BoreholeRepository(BoreholeContext bhContext) 
+        public BoreholeRepository(BoreholeContext bhContext, ILogger log)
         { 
             context = bhContext;
+            logger = log;
         }
 
         public int Add (Borehole bh)
         {
-            context.Add (bh);
-            context.SaveChanges();
+            try
+            {
+                logger.LogInformation($"Saving a borehole {bh}");
 
-            return bh.ID;
+                context.Add(bh);
+                context.SaveChanges();
+
+                return bh.ID;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError($"Error saving Borehole - {ex}");
+            }
+
+            return 0;
         }
 
         public void Edit (Borehole bh)

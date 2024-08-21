@@ -9,7 +9,7 @@ Console.WriteLine("Hello, Borehole time!");
 Borehole bh = new Borehole() { X = 1, Y = 2, Depth = 123.45M };
 
 BoreholeContext boreholeContext = new BoreholeContext(null);
-BoreholeRepository repo = new BoreholeRepository(boreholeContext);
+BoreholeRepository repo = new BoreholeRepository(boreholeContext, null);
 
 Console.WriteLine("Adding Basic borehole...");
 int bhID = repo.Add(bh);

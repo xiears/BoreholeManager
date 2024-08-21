@@ -11,9 +11,9 @@ namespace BoreholeMVCUI.Controllers
     {
         private BoreholeRepository repository;
 
-        public BoreholeController(BoreholeContext context)
+        public BoreholeController(BoreholeContext context, ILogger<BoreholeRepository> log)
         {
-            repository = new BoreholeRepository(context);
+            repository = new BoreholeRepository(context, log);
         }
 
         public IActionResult Index()

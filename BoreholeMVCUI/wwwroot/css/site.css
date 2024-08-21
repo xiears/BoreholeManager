@@ -25,3 +25,7 @@ body {
     color: red;
     font-weight: bold;
 }
+
+.svgMap{
+    border: 5px solid black;
+}

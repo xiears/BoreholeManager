@@ -4,10 +4,12 @@
 *@
 @model DrillViewModel
 @{
-    ViewData["Title"] = "Add Borehole";
+    ViewData["Title"] = "Add Drill Borehole";
 }
-@using (Html.BeginForm()) {
-    <table>
+@using (Html.BeginForm())
+{
+    <h5>Add Drill Borehole</h5>
+    <table class="AddTable">
         <tr>
             <td>@Html.DisplayNameFor(i => i.X)</td>
             <td>@Html.TextBoxFor(i => i.X)</td>
@@ -35,6 +37,7 @@
         </tr>
     </table>
     <input type="submit" value="Save" />
+    <br/> 
     @Html.ActionLink("Go Back to Borehole List", "Index")
 }
 

@@ -98,10 +98,10 @@
         });
 
         @{
-            int maxX = Model.Count() > 0 ? Model.Max(i => i.X) : 0;
-            int maxY = Model.Count() > 0 ? Model.Max(i => i.Y) : 0;
+            int? maxX = Model.Count() > 0 ? Model.Max(i => i.X) : 0;
+            int? maxY = Model.Count() > 0 ? Model.Max(i => i.Y) : 0;
 
-            decimal factor = 0;
+            decimal? factor = 0;
             if (maxX > 0 && maxY > 0)
             {
                 factor = 500 / (maxX < maxY ? maxY : maxX);

@@ -57,7 +57,7 @@ namespace BoreholeMVCUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                repository.Add(new CableBorehole() { Depth = model.Depth, X = model.X, Y = model.Y, CableStrength = model.CableStrength, CableType = model.CableType });
+                repository.Add(new CableBorehole() { Depth = (decimal)model.Depth, X = (int)model.X, Y = (int)model.Y, CableStrength = model.CableStrength, CableType = model.CableType });
 
                 return RedirectToAction("Index");
             }
@@ -75,7 +75,7 @@ namespace BoreholeMVCUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                repository.Add(new DrillBorehole() { Depth = model.Depth, X = model.X, Y = model.Y, DrillStrength = model.DrillStrength, DrillType = model.DrillType });
+                repository.Add(new DrillBorehole() { Depth = (decimal)model.Depth, X = (int)model.X, Y = (int)model.Y, DrillStrength = model.DrillStrength, DrillType = model.DrillType });
 
                 return RedirectToAction("Index");
             }

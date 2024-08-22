@@ -29,3 +29,32 @@ body {
 .svgMap{
     border: 5px solid black;
 }
+
+.BoreholeTableGrid td {
+    padding: 5px;
+    border: 2px solid lightgray;
+}
+
+.BoreholeTableGrid {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.BoreholeTableGrid tr:hover {
+    background-color: gray;
+}
+
+.BoreholeTableGrid thead {
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+}
+
+.AddTable td {
+    padding: 5px;
+}
+
+.ViewTable td {
+    padding: 5px;
+    border: 2px solid lightgray;
+}

@@ -1,17 +1,6 @@
 ﻿@model IEnumerable<BoreholeViewModel>
 @{
-    int maxX = Model.Max(i => i.X);
-    int maxY = Model.Max(i => i.Y);
-    decimal factor = 500 / (maxX < maxY ? maxY : maxX);
-
-    <svg class="svgMap" version="1.1"
-    width="500" height="500"
-    xmlns="http://www.w3.org/2000/svg">
-
-        @foreach (BoreholeViewModel viewModel in Model)
-        {
-            <circle cx="@(viewModel.X * factor)" cy="@(500-(viewModel.Y * factor))" r="5" color="blue" fill="blue" />
-        }
-
-    </svg>
+    <canvas id="canvasMap"
+            width="500" height="500">
+    </canvas>
 }

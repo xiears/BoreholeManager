@@ -20,7 +20,19 @@ namespace BoreholeMVCUI.Controllers
         {
             var allBoreholes = repository.GetAll().Select(bh => new BoreholeViewModel() { Id = bh.ID, X = bh.X, Y = bh.Y, Depth = bh.Depth, BoreholeType = (bh.GetType() == typeof(CableBorehole) ? BoreholeType.Cable : (bh.GetType() == typeof(DrillBorehole) ? BoreholeType.Drill : BoreholeType.Basic)) }).ToList();
 
+            ViewBag.ShowMap = true;
+
             return View(allBoreholes);
+        }
+
+        [Route("borehole/GetByArea/{x1}/{y1}/{x2}/{y2}")]
+        public IActionResult GetByArea(int x1, int y1, int x2, int y2)
+        {
+            var boreholes = repository.GetByArea(x1,y1,x2,y2).Select(bh => new BoreholeViewModel() { Id = bh.ID, X = bh.X, Y = bh.Y, Depth = bh.Depth, BoreholeType = (bh.GetType() == typeof(CableBorehole) ? BoreholeType.Cable : (bh.GetType() == typeof(DrillBorehole) ? BoreholeType.Drill : BoreholeType.Basic)) }).ToList();
+
+            ViewBag.ShowMap = false;
+
+            return View("Index", boreholes);
         }
 
         public IActionResult Details(int id)

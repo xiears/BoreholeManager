@@ -79,7 +79,7 @@ namespace BoreholeData.Repositories
 
         public List<Borehole> GetByArea(int x1, int y1, int x2, int y2)
         {
-            logger.LogInformation($"Getting all boreholes in area ({x1},{y1}),({x2},{y2});
+            logger.LogInformation($"Getting all boreholes in area ({x1},{y1}),({x2},{y2})");
             return context.Boreholes.Where(bh => (bh.X >= x1 && bh.X <= x2 && bh.Y >= y1 && bh.Y <= y2)).ToList();
         }
     }

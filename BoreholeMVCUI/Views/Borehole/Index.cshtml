@@ -50,9 +50,16 @@
                 </table>
             </div>
         </div>
-        <div class="col" id="map">
-            @await Html.PartialAsync("_Map", Model)
-        </div>
+        @if (ViewBag.ShowMap)
+        {
+            <div class="col" id="map">
+                @await Html.PartialAsync("_Map", Model)
+            </div>
+        }
+        else
+        {
+            @Html.ActionLink("Back to Index", "Index")
+        }
     </div>
 </div>
 <div id="deleteModal" class="modal">
@@ -89,5 +96,58 @@
         modal.on('hide.bs.modal', function (event) {
             modal.find(".modal-footer #deleteButton").unbind('click');
         });
+
+        @{
+            int maxX = Model.Count() > 0 ? Model.Max(i => i.X) : 0;
+            int maxY = Model.Count() > 0 ? Model.Max(i => i.Y) : 0;
+
+            decimal factor = 0;
+            if (maxX > 0 && maxY > 0)
+            {
+                factor = 500 / (maxX < maxY ? maxY : maxX);
+            }
+        }
+
+        var start = null;
+        var startCoord = null;
+
+        function draw() {
+            const canvas = $("#canvasMap");
+            if (canvas[0].getContext) {
+                const ctx = canvas[0].getContext("2d");
+
+                ctx.fillStyle = "blue";
+                @foreach (BoreholeViewModel viewModel in Model)
+                {
+                    <text>
+                            ctx.beginPath();
+                            ctx.arc(@(viewModel.X * factor), @(500 - (viewModel.Y * factor)), 5, 0, 2 * Math.PI);
+                            ctx.fill();
+                    </text>
+                }
+
+                const render = (e) => {
+                    if (start) drawBox(e);
+                }
+
+                const drawBox = (e) => {
+                    ctx.clearRect(start.x, start.y, e.offsetX - start.x, e.offsetY - start.y);
+                    ctx.strokeRect(start.x, start.y, e.offsetX - start.x, e.offsetY - start.y);
+                };
+
+                canvas[0].onmousedown = e => { start = { x: e.offsetX, y: e.offsetY }; startCoord = { x: Math.floor(e.offsetX / @factor), y: Math.floor((500 - e.offsetY) / @factor) }; };
+                canvas[0].onmouseup = e => {
+                    var endX = Math.floor(e.offsetX / @factor);
+                    var endY = Math.floor((500 - e.offsetY) / @factor);
+                    var loc = `@Url.Action("GetByArea", "Borehole")/${startCoord.x}/${startCoord.y}/${endX}/${endY}`;
+
+                    window.location.href = loc;
+                }
+                canvas[0].onmousemove = render;
+            }
+        }
+
+        $(document).ready(draw());
+
     </script>
 }

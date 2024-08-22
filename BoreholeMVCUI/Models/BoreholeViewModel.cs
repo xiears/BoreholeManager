@@ -11,16 +11,16 @@ namespace BoreholeMVCUI.Models
 
         [DisplayName("X Position")]
         [Required(ErrorMessage = "This field is required")]
-        public int X { get; set; }
+        public int? X { get; set; }
 
         [DisplayName("Y Position")]
         [Required(ErrorMessage = "This field is required")]
-        public int Y { get; set; }
+        public int? Y { get; set; }
 
         [DisplayName("Depth")]
         [Range(0, 500)]
         [Required(ErrorMessage = "This field is required")]
-        public decimal Depth { get; set; }
+        public decimal? Depth { get; set; }
 
         public BoreholeType BoreholeType { get; set; }
     }
